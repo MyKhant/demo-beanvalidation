@@ -18,4 +18,8 @@ public class EmployeeService {
     public List<Employee> findAllEmployee(){
         return employeeDao.findAll();
     }
+
+    public void deleteEmployee(int id) {
+        employeeDao.deleteById(id);
+    }
 }

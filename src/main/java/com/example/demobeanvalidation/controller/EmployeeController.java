@@ -33,4 +33,9 @@ public class EmployeeController {
         model.addAttribute("employees",employeeService.findAllEmployee());
         return "employees";
     }
+    @GetMapping("/employee/delete")
+    public String deleteEmployee(int id){
+        employeeService.deleteEmployee(id);
+        return "redirect:/employees";
+    }
 }
