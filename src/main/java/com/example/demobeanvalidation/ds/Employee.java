@@ -1,5 +1,6 @@
 package com.example.demobeanvalidation.ds;
 
+import com.example.demobeanvalidation.validation.NameNotAdmin;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +12,8 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -18,13 +21,15 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "FirstName cannot be empty!")
+    @NameNotAdmin(message = "First Name cannot be admin")
+    @NotEmpty(message = "{myapp.validation.msg.firstname}")
     private String firstName;
-    @NotEmpty(message = "LastName cannot be empty!")
+    @NotEmpty(message = "{myapp.validation.msg.lastname}")
     private String lastName;
-    @Min(value = 18, message = "You are too young!") @Max(value = 60, message = "You are too old!")
+    @Min(value = 18, message = "{myapp.validation.msg.young}") @Max(value = 60, message = "{myapp.validation.msg.old}")
     private int age;
-    @NotEmpty(message = "Email cannot be Empty!")
-    @Email(message = "invalid email format!")
+    @NotEmpty(message = "{myapp.validation.msg.email}")
+    @Email(message = "{myapp.validation.msg.invalid}")
     private String email;
+
 }
